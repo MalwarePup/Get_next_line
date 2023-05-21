@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:57:51 by ladloff           #+#    #+#             */
-/*   Updated: 2023/05/22 00:16:24 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 01:46:30 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,23 @@ void	*ft_calloc(size_t count, size_t size)
 	return (p);
 }
 
-t_list	*free_t_lst(t_list *lst)
+t_gnl	*free_gnl_node(t_gnl *current)
 {
-	t_list	*next_node;
+	t_gnl	*next;
 
-	if (!lst)
+	if (!current)
 		return (NULL);
-	next_node = lst->next;
-	free(lst->buffer);
-	free(lst);
-	lst = NULL;
-	return (next_node);
+	next = current->next;
+	free(current->buffer);
+	free(current);
+	return (next);
 }
 
-t_list	*create_t_list_node(int fd)
+t_gnl	*create_gnl_node(int fd)
 {
-	t_list	*new_node;
+	t_gnl	*new_node;
 
-	new_node = ft_calloc(1, sizeof(t_list));
+	new_node = ft_calloc(1, sizeof(t_gnl));
 	if (!new_node)
 		return (NULL);
 	new_node->buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
@@ -68,7 +67,8 @@ t_list	*create_t_list_node(int fd)
 	new_node->read_bytes = read(fd, new_node->buffer, BUFFER_SIZE);
 	if (new_node->read_bytes < 0)
 	{
-		free_t_lst(new_node);
+		free(new_node->buffer);
+		free(new_node);
 		return (NULL);
 	}
 	return (new_node);
