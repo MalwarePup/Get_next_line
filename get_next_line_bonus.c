@@ -6,10 +6,11 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:09:24 by ladloff           #+#    #+#             */
-/*   Updated: 2023/03/04 17:34:48 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/21 23:58:47 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/select.h>
 #include "get_next_line_bonus.h"
 
 static char	*extract_line(t_list **lst, size_t line_size)

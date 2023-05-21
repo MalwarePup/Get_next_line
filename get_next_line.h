@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:43 by ladloff           #+#    #+#             */
-/*   Updated: 2023/03/04 17:11:43 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 00:01:41 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,12 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-/**
- * get_next_line.c
- */
+/* get_next_line.c */
 char	*get_next_line(int fd);
 
-/**
- * get_next_line_utils.c
- */
+/* get_next_line_utils.c */
 void	*ft_calloc(size_t count, size_t size);
 t_list	*free_t_lst(t_list *lst);
 t_list	*create_t_list_node(int fd);
 
-#endif
+#endif /* GET_NEXT_LINE_H */

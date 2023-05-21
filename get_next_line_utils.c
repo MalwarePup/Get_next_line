@@ -6,12 +6,12 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:57:51 by ladloff           #+#    #+#             */
-/*   Updated: 2023/03/04 17:15:45 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 00:16:24 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include <limits.h>
+#include "get_next_line.h"
 
 static void	ft_bzero(void *s, size_t n)
 {
@@ -71,7 +71,5 @@ t_list	*create_t_list_node(int fd)
 		free_t_lst(new_node);
 		return (NULL);
 	}
-	new_node->i = 0;
-	new_node->next = NULL;
 	return (new_node);
 }

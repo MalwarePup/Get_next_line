@@ -6,18 +6,13 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:21 by ladloff           #+#    #+#             */
-/*   Updated: 2023/03/04 18:26:08 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 00:14:56 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/select.h>
 #include "get_next_line.h"
 
-/**
- * To secure more add the following test before before dereferencing in while
- * loop
- * if (!(*lst)->buffer || !(*lst)->read_bytes)
- * break;
- */
 static char	*extract_line(t_list **lst, size_t line_size)
 {
 	ssize_t	i;
