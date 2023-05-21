@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:21 by ladloff           #+#    #+#             */
-/*   Updated: 2023/05/22 00:14:56 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 00:22:41 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*extract_line(t_list **lst, size_t line_size)
 	char	*line;
 	char	*p_line;
 
-	if (!lst || !(*lst) || !line_size)
+	if (!lst || !(*lst))
 		return (NULL);
 	line = malloc((line_size + 1) * sizeof(char));
 	if (!line)
