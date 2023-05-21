@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:09:24 by ladloff           #+#    #+#             */
-/*   Updated: 2023/05/22 00:21:49 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 00:27:49 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*get_next_line(int fd)
 	size_t			line_size;
 	static t_list	*lst[FD_SETSIZE];
 
-	if (fd < 0 || fd > FD_SETSIZE)
+	if (fd < 0 || fd >= FD_SETSIZE)
 		return (NULL);
 	if (!lst[fd])
 		lst[fd] = create_t_list_node(fd);
