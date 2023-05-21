@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:09:24 by ladloff           #+#    #+#             */
-/*   Updated: 2023/05/21 23:58:47 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 00:21:49 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*extract_line(t_list **lst, size_t line_size)
 	char	*line;
 	char	*p_line;
 
-	if (!lst || !line_size)
+	if (!lst || !(*lst))
 		return (NULL);
 	line = ft_calloc((line_size + 1), sizeof(char));
 	if (!line)
@@ -35,6 +35,7 @@ static char	*extract_line(t_list **lst, size_t line_size)
 			i = 0;
 		}
 	}
+	*line = '\0';
 	if (*lst)
 		(*lst)->i = i;
 	return (p_line);
