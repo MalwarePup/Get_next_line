@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:21 by ladloff           #+#    #+#             */
-/*   Updated: 2023/05/22 01:47:19 by ladloff          ###   ########.fr       */
+/*   Updated: 2023/05/22 02:01:31 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static char	*extract_line(t_gnl **list, size_t line_size)
 {
-	ssize_t	i;
+	size_t	i;
 	char	*line;
 	char	*p_line;
 
@@ -29,7 +29,7 @@ static char	*extract_line(t_gnl **list, size_t line_size)
 	while (line_size--)
 	{
 		*line++ = (*list)->buffer[i++];
-		if ((*list)->read_bytes == i)
+		if ((size_t)(*list)->read_bytes == i)
 		{
 			*list = free_gnl_node(*list);
 			i = 0;
