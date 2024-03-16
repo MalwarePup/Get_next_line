@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:21 by ladloff           #+#    #+#             */
-/*   Updated: 2023/05/22 02:01:31 by ladloff          ###   ########.fr       */
+/*   Updated: 2024/03/16 01:42:57 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,19 @@ char	*get_next_line(int fd)
 	char			*line;
 	size_t			line_size;
 
-	if (fd < 0 || fd >= FD_SETSIZE)
-		return (NULL);
-	if (!list)
-		list = create_gnl_node(fd);
-	if (!list)
-		return (NULL);
-	if (!list->read_bytes)
+	line = NULL;
+	if (fd >= 0 && fd < FD_SETSIZE)
 	{
-		list = free_gnl_node(list);
-		return (NULL);
+		if (!list)
+			list = create_gnl_node(fd);
+		if (list && list->read_bytes)
+		{
+			line_size = get_line_size(list, fd);
+			if (line_size)
+				line = extract_line(&list, line_size);
+		}
+		else
+			list = free_gnl_node(list);
 	}
-	line_size = get_line_size(list, fd);
-	if (!line_size)
-		return (NULL);
-	line = extract_line(&list, line_size);
 	return (line);
 }
