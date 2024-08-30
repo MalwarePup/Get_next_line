@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:21 by ladloff           #+#    #+#             */
-/*   Updated: 2024/08/30 22:01:10 by ladloff          ###   ########.fr       */
+/*   Updated: 2024/08/30 22:04:01 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ char	*get_next_line(int fd)
 		line_size = get_line_size(list, fd);
 		if (line_size)
 			line = extract_line(&list, line_size);
+		if (!line || !list)
+			while (list)
+				list = free_gnl_node(list);
 	}
 	else
 		list = free_gnl_node(list);
