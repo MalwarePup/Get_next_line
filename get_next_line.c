@@ -6,7 +6,7 @@
 /*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:55:21 by ladloff           #+#    #+#             */
-/*   Updated: 2024/08/30 21:34:07 by ladloff          ###   ########.fr       */
+/*   Updated: 2024/08/30 22:01:10 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ static size_t	get_line_size(t_gnl *list, int fd)
 
 	if (!list || !list->buffer)
 		return (0);
-	line_size = 1;
+	line_size = 0;
 	i = list->buffer_index;
-	while (list->buffer[i] && list->buffer[i++] != '\n')
+	while (list->buffer[i] && list->buffer[i] != '\n')
 	{
-		if ((size_t)list->read_bytes == i)
+		line_size++;
+		if ((size_t)list->read_bytes == ++i)
 		{
 			new_node = create_gnl_node(fd);
 			if (!new_node)
@@ -62,8 +63,9 @@ static size_t	get_line_size(t_gnl *list, int fd)
 			list = new_node;
 			i = 0;
 		}
-		line_size++;
 	}
+	if (list->buffer[i] == '\n')
+		line_size++;
 	return (line_size);
 }
 
